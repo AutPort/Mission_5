@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Tutoring Page";
+    decimal hourlyRate = 50.00m; // Set hourly rate
+}
+<h1 class="display-4"">Want to learn how to play?</h1>
+
+<p>Use the boxes below to calculate how much it would cost for a lesson about Ultimate Frisbee!</p>
+
+<br />
+<br />
+
+<h2>Tutoring Cost Calculator</h2>
+
+<form id="calculatorForm">
+    <div>
+        <label for="hoursNeeded">Enter Hours Needed:</label>
+        <input type="number" id="hoursNeeded" min="1" required>
+        <span id="error-message" style="color: red; display: none;">Please enter a positive number.</span>
+    </div>
+
+    <br />
+
+    <div>
+        <label>Hourly Rate:</label>
+        <input type="text" value="@hourlyRate.ToString("C")" readonly>
+    </div>
+
+    <br />
+
+    <button type="button" onclick="calculateTotal()">Calculate Total</button>
+
+    <br />
+    <br />
+
+    <div>
+        <label>Total Cost:</label>
+        <input type="text" id="totalCost" readonly>
+    </div>
+</form>
+
+<script>
+    function calculateTotal() {
+        var hours = document.getElementById("hoursNeeded").value;
+        var hourlyRate = @hourlyRate;
+
+        if (hours <= 0 || isNaN(hours)) {
+            document.getElementById("error-message").style.display = "inline";
+            return;
+        } else {
+            document.getElementById("error-message").style.display = "none";
+        }
+
+        var total = hours * hourlyRate;
+        document.getElementById("totalCost").value = total.toFixed(2);
+    }
+</script>
+
