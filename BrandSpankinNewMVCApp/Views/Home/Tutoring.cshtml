@@ -12,7 +12,7 @@
 <h2>Tutoring Cost Calculator</h2>
 
 <form id="calculatorForm">
-    <div>
+	<div><!-- input box for user to enter desired number of hours -->
         <label for="hoursNeeded">Enter Hours Needed:</label>
         <input type="number" id="hoursNeeded" min="1" required>
         <span id="error-message" style="color: red; display: none;">Please enter a positive number.</span>
@@ -20,38 +20,26 @@
 
     <br />
 
-    <div>
+	<div><!-- set, preprogrammed hour wage displayed in a box -->
         <label>Hourly Rate:</label>
         <input type="text" value="@hourlyRate.ToString("C")" readonly>
     </div>
 
     <br />
 
+    <!-- calculate button to perform java function -->
     <button type="button" onclick="calculateTotal()">Calculate Total</button>
 
     <br />
     <br />
 
-    <div>
+    <div><!-- display total cost of services in a box -->
         <label>Total Cost:</label>
         <input type="text" id="totalCost" readonly>
     </div>
 </form>
 
-<script>
-    function calculateTotal() {
-        var hours = document.getElementById("hoursNeeded").value;
-        var hourlyRate = @hourlyRate;
 
-        if (hours <= 0 || isNaN(hours)) {
-            document.getElementById("error-message").style.display = "inline";
-            return;
-        } else {
-            document.getElementById("error-message").style.display = "none";
-        }
+<span id="hourlyRate" style="display: none;">@hourlyRate</span>
 
-        var total = hours * hourlyRate;
-        document.getElementById("totalCost").value = total.toFixed(2);
-    }
-</script>
-
+<script src="~/js/site.js"></script>
